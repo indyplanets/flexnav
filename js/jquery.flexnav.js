@@ -36,11 +36,11 @@
       } else {
         $nav.removeClass("sm-screen").addClass("lg-screen");
         $nav.removeClass('show');
-        return $('.item-with-ul').on('mouseenter', function() {
-          return $(this).find('>ul').addClass('show').stop(true, true).slideDown(settings.animationSpeed);
-        }).on('mouseleave', function() {
-          return $(this).find('>ul').removeClass('show').stop(true, true).slideUp(settings.animationSpeed);
-        });
+         return $('.item-with-ul').hoverIntent({
+	            over: showMenu,
+	            out: resetMenu,
+	            timeout: 100
+	        });
       }
     };
     $(settings['buttonSelector']).data('navEl', $nav);
@@ -106,3 +106,10 @@
   };
 
 }).call(this);
+
+function showMenu(){
+    $(this).find('> ul').fadeIn(100);
+}
+function resetMenu(){
+    $(this).find('> ul').fadeOut(100);
+}
