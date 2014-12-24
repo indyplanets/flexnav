@@ -88,9 +88,10 @@
         if (settings.calcItemWidths === true) {
           $top_nav_items.css('width', nav_percent);
         }
-        $nav.removeClass('flexnav-show').find('.item-with-ul').on();
-        $('.item-with-ul').find('ul').removeClass('flexnav-show');
-        resetMenu();
+        $nav.removeClass('flexnav-show');
+        $('.item-with-ul').find('ul.flexnav-show').each(function(){
+            resetMenu.call($(this).parent().get(0));
+        });
         if (settings.hoverIntent === true) {
           return $('.item-with-ul').hoverIntent({
             over: showMenu,
@@ -98,7 +99,7 @@
             timeout: settings.hoverIntentTimeout
           });
         } else if (settings.hoverIntent === false) {
-          return $('.item-with-ul').on('mouseenter', showMenu).on('mouseleave', resetMenu);
+          return $('.item-with-ul').off().on('mouseenter', showMenu).on('mouseleave', resetMenu);
         }
       }
     };
