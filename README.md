@@ -41,6 +41,8 @@ FlexNav is unlicensed. Do whatever you want with it. :) [Set Your Code Free](htt
 * * *
 ### Usage
 
+FlexNav requires atleast jQuery 1.7 for the event APIs: .on() and .off()
+
 Start with a simple unordered list, adding in the class and data attributes:
 ```xhtml
 <ul class="flexnav" data-breakpoint="800"> <li>...</li> </ul>
