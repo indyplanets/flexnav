@@ -14,7 +14,7 @@
   $ = jQuery;
 
   $.fn.flexNav = function(options) {
-    var $nav, $top_nav_items, breakpoint, count, nav_percent, nav_width, resetMenu, resizer, settings, showMenu, toggle_selector, touch_selector;
+    var $nav, $top_nav_items, breakpoint, count, nav_percent, nav_width, resetMenu, resizer, settings, showMenu, toggle_selector, touch_selector, edgeDetect;
     settings = $.extend({
       'animationSpeed': 250,
       'transitionOpacity': true,
@@ -22,7 +22,8 @@
       'hoverIntent': false,
       'hoverIntentTimeout': 150,
       'calcItemWidths': false,
-      'hover': true
+      'hover': true,
+      'detectEdges': true
     }, options);
     $nav = $(this);
     $nav.addClass('with-js');
@@ -40,6 +41,33 @@
       nav_width = 100 / count;
       nav_percent = nav_width + "%";
     }
+    /* Edge Detect */
+    if (settings.detectEdges === true) {
+        $(function () {
+
+            $('.item-with-ul').on('mouseenter mouseleave', function (e) {
+                var elm = $('ul:first', this);
+                var off = elm.offset();
+                var l = off.left;
+                var w = elm.width();
+                var docW = $(window).width();
+
+                var isEntirelyVisible = (l + w <= docW);
+
+                if (!isEntirelyVisible) {
+                    $(this).addClass('edge');
+                } else {
+                    $(this).delay(260).queue(function () {
+                        $(this).removeClass('edge');
+                        $(this).dequeue();
+                    });
+                }
+            });
+
+
+        });
+    }
+    /* End Edge Detect */
     if ($nav.data('breakpoint')) {
       breakpoint = $nav.data('breakpoint');
     }

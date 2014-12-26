@@ -98,6 +98,16 @@
       position: relative;
       top: 1em;
       color: #666; }
+      
+/* edge detect fix */
+.flexnav li ul li.edge > ul {
+  left: auto;
+	right: 97%; }
+
+.flexnav li.edge > ul {
+  left: auto;
+	right: 0; }
+/* end edge detect */
 
 @media all and (min-width: 800px) {
   body.one-page {
