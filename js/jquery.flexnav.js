@@ -1,5 +1,5 @@
 /*
-	FlexNav.js 1.3.3
+	FlexNav.js 1.3.4
 
 	Created by Jason Weaver http://jasonweaver.name
 	Released under http://unlicense.org/
@@ -19,6 +19,7 @@
       'animationSpeed': 250,
       'transitionOpacity': true,
       'buttonSelector': '.menu-button',
+      'breakpoint': 'breakpoint',
       'hoverIntent': false,
       'hoverIntentTimeout': 150,
       'calcItemWidths': false,
@@ -40,8 +41,8 @@
       nav_width = 100 / count;
       nav_percent = nav_width + "%";
     }
-    if ($nav.data('breakpoint')) {
-      breakpoint = $nav.data('breakpoint');
+    if ($nav.data(settings['breakpoint'])) {
+      breakpoint = $nav.data(settings['breakpoint']);
     }
     showMenu = function() {
       if ($nav.hasClass('lg-screen') === true && settings.hover === true) {
