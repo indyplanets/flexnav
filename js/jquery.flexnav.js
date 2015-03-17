@@ -89,7 +89,7 @@
           $top_nav_items.css('width', nav_percent);
         }
         $nav.removeClass('flexnav-show').find('.item-with-ul').on();
-        $('.item-with-ul').find('ul').removeClass('flexnav-show');
+        $nav.find('.item-with-ul').find('ul').removeClass('flexnav-show');
         resetMenu();
         if (settings.hoverIntent === true) {
           return $('.item-with-ul').hoverIntent({
@@ -98,7 +98,7 @@
             timeout: settings.hoverIntentTimeout
           });
         } else if (settings.hoverIntent === false) {
-          return $('.item-with-ul').on('mouseenter', showMenu).on('mouseleave', resetMenu);
+          return $nav.find('.item-with-ul').on('mouseenter', showMenu).on('mouseleave', resetMenu);
         }
       }
     };
